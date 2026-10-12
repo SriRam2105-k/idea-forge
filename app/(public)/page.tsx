@@ -269,17 +269,9 @@ export default async function LandingPage() {
         <section id="contact" className="w-full bg-[#1B2B6B] py-12 sm:py-16 lg:py-20 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-left">
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">Get in Touch</h2>
-            <p className="text-sm sm:text-base lg:text-lg text-blue-100 mb-6 sm:mb-8 max-w-2xl leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg text-blue-100 max-w-2xl leading-relaxed">
               For further updates and doubt classification, contact the hackathon club members.
             </p>
-            <div className="flex justify-start">
-              <a
-                href="mailto:contact@nprcolleges.org"
-                className="w-full sm:w-auto px-8 py-3.5 sm:py-4 bg-[#F5C518] text-[#1B2B6B] font-bold rounded-full hover:bg-yellow-400 transition-colors shadow-md text-center text-sm sm:text-base inline-flex items-center justify-center"
-              >
-                Email Us
-              </a>
-            </div>
           </div>
         </section>
       </main>
