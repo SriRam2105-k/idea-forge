@@ -119,7 +119,7 @@ export function PublicNav({ session }: PublicNavProps = {}) {
       {/* Backdrop overlay */}
       {menuOpen && (
         <div
-          className="fixed inset-0 top-[70px] sm:top-[80px] bg-slate-900/50 backdrop-blur-[2px] z-40 md:hidden animate-fade-in"
+          className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-40 md:hidden"
           onClick={() => setMenuOpen(false)}
           aria-hidden="true"
         />
@@ -129,9 +129,9 @@ export function PublicNav({ session }: PublicNavProps = {}) {
       {menuOpen && (
         <div
           style={{ backgroundColor: '#ffffff', opacity: 1 }}
-          className="md:hidden border-t border-b border-gray-200 bg-white shadow-2xl absolute top-full left-0 right-0 z-50 animate-fade-in max-h-[calc(100dvh-70px)] overflow-y-auto"
+          className="md:hidden fixed top-[70px] sm:top-[80px] left-0 right-0 z-50 bg-white border-b-2 border-gray-200 shadow-2xl max-h-[calc(100dvh-70px)] overflow-y-auto"
         >
-          <div className="px-4 py-4 space-y-2">
+          <div className="px-4 py-4 space-y-2.5">
             {navLinks.map(link => {
               const isActive = link.href === '/' ? pathname === '/' : pathname === link.href;
               return (
@@ -139,28 +139,29 @@ export function PublicNav({ session }: PublicNavProps = {}) {
                   key={link.href}
                   href={link.href}
                   className={cn(
-                    'block px-4 py-3 rounded-lg text-sm font-medium transition-colors',
+                    'flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-semibold transition-all',
                     isActive
-                      ? 'bg-[#E8EDF8] text-[#1B2B6B] font-semibold border-l-4 border-[#1B2B6B]'
-                      : 'text-gray-700 hover:bg-gray-50'
+                      ? 'bg-[#1B2B6B] text-white shadow-sm'
+                      : 'bg-gray-50 text-gray-800 hover:bg-gray-100 hover:text-[#1B2B6B] border border-gray-200/60'
                   )}
                   onClick={() => setMenuOpen(false)}
                 >
-                  {link.label}
+                  <span>{link.label}</span>
+                  {isActive && <span className="w-2 h-2 rounded-full bg-[#F5C518]" />}
                 </Link>
               );
             })}
 
             {session ? (
-              <div className="pt-2 border-t border-gray-100 space-y-2">
-                <div className="px-4 py-3 bg-[#E8EDF8] rounded-lg">
+              <div className="pt-3 border-t border-gray-100 space-y-2.5">
+                <div className="px-4 py-3 bg-[#E8EDF8] rounded-xl border border-blue-100">
                   <div className="text-[10px] text-gray-500 uppercase tracking-wider font-semibold">Logged in as</div>
-                  <div className="text-sm font-bold text-[#1B2B6B] truncate mt-0.5">{session.teamName}</div>
+                  <div className="text-base font-bold text-[#1B2B6B] truncate mt-0.5">{session.teamName}</div>
                   <div className="text-xs text-blue-700 font-mono mt-0.5">{session.teamCode}</div>
                 </div>
                 <Link
                   href="/team"
-                  className="block px-4 py-3 bg-[#1B2B6B] text-white rounded-lg text-sm font-semibold text-center hover:bg-[#142055] transition-colors shadow-sm"
+                  className="block px-4 py-3.5 bg-[#1B2B6B] text-white rounded-xl text-base font-semibold text-center hover:bg-[#142055] transition-colors shadow-sm"
                   onClick={() => setMenuOpen(false)}
                 >
                   Go to Team Dashboard
@@ -170,10 +171,10 @@ export function PublicNav({ session }: PublicNavProps = {}) {
                 </div>
               </div>
             ) : (
-              <div className="pt-2 border-t border-gray-100">
+              <div className="pt-3 border-t border-gray-100">
                 <Link
                   href="/team/login"
-                  className="block px-4 py-3 bg-[#1B2B6B] text-white rounded-lg text-sm font-semibold text-center hover:bg-[#142055] transition-colors shadow-sm"
+                  className="block px-4 py-3.5 bg-[#1B2B6B] text-white rounded-xl text-base font-semibold text-center hover:bg-[#142055] transition-colors shadow-sm"
                   onClick={() => setMenuOpen(false)}
                 >
                   Team Login
