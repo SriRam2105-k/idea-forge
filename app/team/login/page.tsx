@@ -38,17 +38,19 @@ function TeamLoginContent() {
               <div className="text-[10px] text-gray-500">Hackathon Portal</div>
             </div>
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <Link
               href="/admin/login"
-              className="flex items-center gap-1.5 text-xs font-medium text-gray-600 hover:text-[#1B2B6B] transition-colors bg-gray-100 hover:bg-gray-200 px-2.5 py-1.5 rounded-md"
+              className="flex items-center gap-1.5 text-xs font-medium text-gray-600 hover:text-[#1B2B6B] transition-colors bg-gray-100 hover:bg-gray-200 px-2 sm:px-2.5 py-1.5 rounded-md"
             >
               <Shield className="w-3.5 h-3.5 text-[#1B2B6B]" />
-              Admin Login
+              <span className="hidden xs:inline">Admin Login</span>
+              <span className="xs:hidden">Admin</span>
             </Link>
-            <Link href="/" className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-700 transition-colors">
+            <Link href="/" className="flex items-center gap-1 text-xs sm:text-sm text-gray-500 hover:text-gray-700 transition-colors">
               <ArrowLeft className="w-3.5 h-3.5" />
-              Back to Home
+              <span className="hidden xs:inline">Back to Home</span>
+              <span className="xs:hidden">Home</span>
             </Link>
           </div>
         </div>

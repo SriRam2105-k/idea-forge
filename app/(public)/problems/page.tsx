@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 async function getProblemsWithLockStatus(): Promise<Array<Problem & { is_locked: boolean }>> {
   try {
     const supabase = createAdminClient();
-    const [{ data: problems }, { data: allocations }] = await Promise.all([
+    const [{ data: problems, error: problemsError }, { data: allocations, error: allocError }] = await Promise.all([
       supabase
         .from('problems')
         .select('*')
@@ -24,11 +24,19 @@ async function getProblemsWithLockStatus(): Promise<Array<Problem & { is_locked:
         .select('problem_id'),
     ]);
 
+    if (problemsError) {
+      console.error('Error fetching problems from Supabase:', problemsError);
+      return [];
+    }
+    if (allocError) {
+      console.error('Error fetching allocations from Supabase:', allocError);
+    }
     if (!problems) return [];
 
     const lockedIds = new Set((allocations || []).map(a => a.problem_id));
     return problems.map(p => ({ ...p, is_locked: lockedIds.has(p.id) }));
-  } catch {
+  } catch (error) {
+    console.error('Exception in getProblemsWithLockStatus():', error);
     return [];
   }
 }

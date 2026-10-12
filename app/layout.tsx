@@ -1,5 +1,12 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#1B2B6B',
+};
 
 export const metadata: Metadata = {
   title: {
@@ -24,7 +31,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-white antialiased">
+      <body className="min-h-screen bg-white antialiased overflow-x-hidden">
         {children}
       </body>
     </html>
